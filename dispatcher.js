@@ -45,6 +45,7 @@ var init = function (client) {
 
 	Object.keys(commands).forEach(function (command) {
 		handlers[command] = require(path.resolve(util.config.get('COMMAND_DIR'), command));
+		handlers[command].slackClient = slackClient;
 	});
 
 	logger.info('Command dispatcher initialized');
