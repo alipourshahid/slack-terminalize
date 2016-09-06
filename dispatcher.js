@@ -45,7 +45,6 @@ var init = function (client) {
 
 	Object.keys(commands).forEach(function (command) {
 		handlers[command] = require(path.resolve(util.config.get('COMMAND_DIR'), command));
-		handlers[command].slackClient = slackClient;
 	});
 
 	logger.info('Command dispatcher initialized');
@@ -77,7 +76,7 @@ var handle = function (msg) {
 			throw new Error('Command ' + data.command + ' not found in ' + util.config.get('COMMAND_DIR') + ' directory');
 		}
 
-		handlers[data.command](data);
+		handlers[data.command](data, slackClient);
 	}
 };
 
