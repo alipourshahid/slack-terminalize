@@ -76,7 +76,7 @@ var handle = function (msg) {
 			throw new Error('Command ' + data.command + ' not found in ' + util.config.get('COMMAND_DIR') + ' directory');
 		}
 
-		handlers[data.command](data, slackClient);
+		handlers[data.command](data);
 	}
 };
 
